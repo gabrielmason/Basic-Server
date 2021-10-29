@@ -170,7 +170,6 @@ void processCGIBin(char docPath[], char realPath[], int fd) {
     }
     waitpid(fd, NULL, 0);
     close(fd);
-  } else {//run loadable
   }
 }
 
@@ -446,7 +445,6 @@ void processRequest(int fd) {
   strcat(filePath, docPath);
 
   printf("docPath: %s,  file path generated: %s\n", docPath, filePath);
-//printf("content type: %s\n\n", contentType);
 
   //run CGI bin and loadables
   if (strstr(docPath, "cgi-bin") != NULL) {
@@ -504,7 +502,6 @@ void processRequest(int fd) {
   if (stat_fp == NULL) {
     perror("fopen for stat");
   }
-  fwrite("Author: Gabriel Mason (mason143)\n", 33, 1, stat_fp);
   fwrite("Time that server has been running: ", 35, 1, stat_fp);
   time_t endTime;
   time(&endTime);
@@ -538,8 +535,7 @@ void processRequest(int fd) {
 
 int main(int argc, char ** argv)
 {
-  // Add your HTTP implementation here
-
+  
   //zombie clean up
   struct sigaction sa;
   sa.sa_handler = handle;
@@ -624,7 +620,7 @@ int main(int argc, char ** argv)
     strcpy(currentIP, inet_ntoa(clientIPAddress.sin_addr));
     switch (flag) {
       case 0: {
-        //iterative mode like daytime server
+        //iterative mode
        processRequest(clientSocket);
        close(clientSocket);
        break;
