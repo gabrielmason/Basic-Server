@@ -134,7 +134,6 @@ bool compareSD(std::string x, std::string y) {
       break;
     }
   }
-  printf("IN COMPARESD, x_name: %s, y_name: %s\n\n", x_name, y_name);
   return (strcmp(x_name, y_name) > 0);
 }
 
@@ -148,9 +147,6 @@ void processCGIBin(char docPath[], char realPath[], int fd) {
   if (strstr(docPath, "?") != NULL) {
     strcpy(args, strstr(docPath, "?") + 1);
   }
-
-  printf("docPath in CGI function: %s, real: %s, arguments: %s\n", docPath, realPath, args);
-
 
   if (strstr(docPath, ".so") == NULL) { //run cgi-bin
     pid_t ret = fork();
